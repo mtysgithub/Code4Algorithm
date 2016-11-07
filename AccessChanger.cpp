@@ -21,7 +21,9 @@ public:
 		for (int i = 0; i < program.size(); ++i){
 			string str_item = program[i];
 			int comment_tk_pos = str_item.find(comment_tk, 0);
-			if (comment_tk_pos == string::npos) comment_tk_pos = str_item.length() - 1; /*bug. string::npos 是个不确定的值 只能判等，不能判大小于*/
+			
+			/*bug. string::npos 是个不确定的值 只能判等，不能判大小于*/
+			if (comment_tk_pos == string::npos) comment_tk_pos = str_item.length() - 1; 
 
 			while(1){
 				int arrow_tk_pos = str_item.find(arrow_tk, 0);
