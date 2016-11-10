@@ -23,7 +23,7 @@ public:
 		public:
 			size_t operator() (const _USet_Data& pra) const{
 
-				return hash<int>()((int)(pra.val));
+				return hash<int>()(pra.val);
 
 				//full random is incorrect.
 				//return hash<int>()((int)(this));
