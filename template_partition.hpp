@@ -8,8 +8,8 @@
 using namespace std;
 
 template<class _TCntrIt,
-class _Pd>
-_TCntrIt ty_toc_partition(_TCntrIt &it_begin, _TCntrIt &it_end, _Pd predicate_ptr){
+class _TPd>
+_TCntrIt ty_toc_partition(_TCntrIt &it_begin, _TCntrIt &it_end, _TPd &predicate_ptr){
 	auto it_last_faild = it_end;
 	auto it_step = it_begin;
 
@@ -61,33 +61,37 @@ _TCntrIt ty_toc_partition(_TCntrIt &it_begin, _TCntrIt &it_end, _Pd predicate_pt
 class Tester{
 public:
 	void test(){
-		cout << "enter data seq" << endl;
+		cout << "enter data seq -1 finish" << endl;
 
 		vector<int> case_cntr;
 		int val;
 		while (cin >> val){
+			if (val == -1)
+			{
+				break;
+			}
 			case_cntr.push_back(val);
 		}
 
 		cout << "enter balance point" << endl;
 		cin >> val;
 
-		ty_toc_partition(case_cntr.begin(), case_cntr.end(), [&val](vector<int>::iterator &it_elet){
+		auto it_balance_point = ty_toc_partition(case_cntr.begin(), case_cntr.end(), [&val](vector<int>::iterator &it_elet){
 			return *it_elet < val;
 		});
 
 		//output.
-		cout << "sorted:" << endl;
 		for (auto elet : case_cntr){
 			cout << elet << " ";
 		}
 		cout << endl;
+		cout << "balance_point: " <<*it_balance_point << endl;
 	}
 };
 
 int main(){
-
 	Tester tester;
 	tester.test();
+	system("pause");
 	return 0;
 }
